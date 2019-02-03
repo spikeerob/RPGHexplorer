@@ -1,0 +1,20 @@
+@using RPGHexplorer.Lib.HexMap
+
+<polygon points="@GetPointString()" stroke="black" fill="grey" />
+
+@functions {
+
+    [Parameter]
+    private Layout Layout { get; set; }
+
+    [Parameter]
+    private Hex Hex { get; set; }
+
+    protected string GetPointString()
+    {
+        var corners = Layout.GetHexCorners(Hex);
+
+        return string.Join(" ", corners.Select(c => $"{c.X},{c.Y}"));
+    }
+
+}

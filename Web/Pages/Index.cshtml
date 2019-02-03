@@ -1,7 +1,19 @@
 ﻿@page "/"
+@using RPGHexplorer.Lib.HexMap
 
 <h1>Hello, world!</h1>
 
-Welcome to your new app.
+<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+    @foreach (var hex in HexMap.Hexes.Values)
+    {
+        <HexComponent Hex="@hex" Layout="@Layout"></HexComponent>
+    }
+    
+</svg>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+@functions{
+               
+    private HexMap HexMap { get; set; } = HexMap.FromHexagon(4);
+     
+    private Layout Layout = new Layout(Orientation.Flat, new Point(20, 20),new Point(250, 250));
+}

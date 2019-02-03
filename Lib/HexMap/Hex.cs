@@ -19,6 +19,8 @@ namespace RPGHexplorer.Lib.HexMap
         /// </summary>
         public int S { get; }
 
+        public string Identifier => $"{Q}.{R}";
+
         public Hex(int q, int r, int s)
         {
             if (q + r + s != 0)
