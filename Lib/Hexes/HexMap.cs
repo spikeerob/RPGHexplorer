@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace RPGHexplorer.Lib.HexMap
+namespace RPGHexplorer.Lib.Hexes
 {
     public class HexMap
     {
-        public Dictionary<string, Hex> Hexes = new Dictionary<string, Hex>();
+        public List<Hex> Hexes = new List<Hex>();
 
         public void AddHex(Hex hex)
         {
-            Hexes[hex.Identifier] = hex;
+            Hexes.Add(hex);
         }
 
         public static HexMap FromRectangle(int width, int height)

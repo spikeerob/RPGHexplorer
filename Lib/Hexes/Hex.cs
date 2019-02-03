@@ -1,6 +1,6 @@
 using System;
 
-namespace RPGHexplorer.Lib.HexMap
+namespace RPGHexplorer.Lib.Hexes
 {
     public class Hex
     {
@@ -18,8 +18,6 @@ namespace RPGHexplorer.Lib.HexMap
         /// Equivalent to Z for cube coords
         /// </summary>
         public int S { get; }
-
-        public string Identifier => $"{Q}.{R}";
 
         public Hex(int q, int r, int s)
         {

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace RPGHexplorer.Lib.HexMap
+namespace RPGHexplorer.Lib.Hexes
 {
     public class Layout
     {
