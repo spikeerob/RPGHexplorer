@@ -1,5 +1,4 @@
 ﻿@page "/"
-@inject TileMapService TileMapService
 
 <h1>@MapName Map</h1>
 
@@ -24,13 +23,11 @@
 
     private async Task CreateTestMap()
     {
-        await TileMapService.CreateNewTileMap("Test");
         await ReloadTileMap();
     }
     
     private async Task ReloadTileMap()
     {
-        TileMap = await TileMapService.GetTileMap("test");
     }
 
 }

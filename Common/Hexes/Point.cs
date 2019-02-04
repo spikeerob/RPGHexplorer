@@ -1,4 +1,4 @@
-namespace RPGHexplorer.Lib.Hexes
+namespace Common.Hexes
 {
     public struct Point
     {

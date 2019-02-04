@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Common.TileMaps;
 
 namespace RPGHexplorer.Lib.TileMaps.Repositories
 {

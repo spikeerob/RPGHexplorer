@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
-using RPGHexplorer.Lib.Hexes;
+using Common.Hexes;
+using Common.TileMaps;
 using RPGHexplorer.Lib.TileMaps.Repositories;
 
 namespace RPGHexplorer.Lib.TileMaps.Services

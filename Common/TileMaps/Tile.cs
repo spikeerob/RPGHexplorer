@@ -1,6 +1,6 @@
-using RPGHexplorer.Lib.Hexes;
+using Common.Hexes;
 
-namespace RPGHexplorer.Lib.TileMaps
+namespace Common.TileMaps
 {
     public class Tile
     {

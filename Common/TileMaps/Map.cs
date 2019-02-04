@@ -1,4 +1,4 @@
-namespace RPGHexplorer.Lib.TileMaps
+namespace Common.TileMaps
 {
     public class Map
     {

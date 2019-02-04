@@ -1,6 +1,6 @@
 using System;
 
-namespace RPGHexplorer.Lib.Hexes
+namespace Common.Hexes
 {
     public struct Orientation
     {

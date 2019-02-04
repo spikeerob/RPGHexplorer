@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace RPGHexplorer.Lib.TileMaps
+namespace Common.TileMaps
 {
     public class TileMap
     {
