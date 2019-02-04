@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib", "Lib\Lib.csproj", "{E4D0DF28-8D31-4A20-BDFE-C1FA7A4E7236}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGHexplorer.Lib", "RPGHexplorer.Lib\RPGHexplorer.Lib.csproj", "{E4D0DF28-8D31-4A20-BDFE-C1FA7A4E7236}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{AF3EA689-2972-430C-BE13-3D0F951A85A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGHexplorer.Web", "RPGHexplorer.Web\RPGHexplorer.Web.csproj", "{AF3EA689-2972-430C-BE13-3D0F951A85A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{3B9BEDD5-8AC7-446D-8628-5D6DA4E57EAB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGHexplorer.Api", "RPGHexplorer.Api\RPGHexplorer.Api.csproj", "{3B9BEDD5-8AC7-446D-8628-5D6DA4E57EAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{4F380B4D-5300-47F1-B69C-939A1B20B9CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGHexplorer.Common", "RPGHexplorer.Common\RPGHexplorer.Common.csproj", "{4F380B4D-5300-47F1-B69C-939A1B20B9CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

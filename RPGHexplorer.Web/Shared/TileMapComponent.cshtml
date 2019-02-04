@@ -1,0 +1,17 @@
+@using RPGHexplorer.Common.Hexes
+@using RPGHexplorer.Common.TileMaps
+<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+    @foreach (var tile in Tiles)
+    {
+        <TileComponent Tile="@tile" Layout="@Layout"></TileComponent>
+    }
+</svg>
+
+@functions{
+
+    [Parameter]
+    private IEnumerable<Tile> Tiles { get; set; }
+
+    private Layout Layout = new Layout(Orientation.Flat, new Point(20, 20),new Point(250, 250));
+
+}
