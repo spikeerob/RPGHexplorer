@@ -40,10 +40,10 @@ namespace RPGHexplorer.Api
             services.AddDbContext<MapDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("MapDatabase")));
             
-            services.AddSingleton<IMapRepository, DbMapRepository>();
-            services.AddSingleton<ITileRepository, DbTileRepository>();
+            services.AddScoped<IMapRepository, DbMapRepository>();
+            services.AddScoped<ITileRepository, DbTileRepository>();
 
-            services.AddSingleton<TileMapService, TileMapService>();
+            services.AddScoped<TileMapService, TileMapService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

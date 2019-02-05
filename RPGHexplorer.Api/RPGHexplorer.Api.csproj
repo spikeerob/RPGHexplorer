@@ -3,7 +3,6 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp2.1</TargetFramework>
         <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-        <AssemblyName>RPGHexplorer.Api</AssemblyName>
         <RootNamespace>RPGHexplorer.Api</RootNamespace>
     </PropertyGroup>
 

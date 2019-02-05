@@ -3,7 +3,6 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp2.1</TargetFramework>
         <RootNamespace>RPGHexplorer.Lib</RootNamespace>
-        <AssemblyName>RPGHexplorer.Lib</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
