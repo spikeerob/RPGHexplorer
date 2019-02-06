@@ -4,15 +4,18 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using RPGHexplorer.Lib.Repositories;
 
-namespace RPGHexplorer.Lib.DataBases
+namespace RPGHexplorer.Api.DataBases
 {
-    public class BaseDbRepository<TEntity> where TEntity : class
+    public abstract class BaseDbRepository<TEntity> where TEntity : class
     {
         protected MapDbContext Context { get; private set; }
         
         protected DbSet<TEntity> DB { get; private set; }
 
+        public IUnitOfWork UnitOfWork => Context;
+        
         protected BaseDbRepository(MapDbContext context)
         {
             Context = context;
@@ -36,14 +39,15 @@ namespace RPGHexplorer.Lib.DataBases
             return await DB.FindAsync(ids);
         }
         
-        protected async Task SaveAsync(TEntity entity)
+        protected Task SaveAsync(TEntity entity)
         {
             DB.Attach(entity);
             Context.Entry(entity).State = EntityState.Modified;
-            await Context.SaveChangesAsync();
+            
+            return Task.CompletedTask;
         }
         
-        protected async Task SaveAsync(IEnumerable<TEntity> entities)
+        protected Task SaveAsync(IEnumerable<TEntity> entities)
         {
             foreach (var entity in entities)
             {
@@ -51,10 +55,10 @@ namespace RPGHexplorer.Lib.DataBases
                 Context.Entry(entity).State = EntityState.Modified;
             }
             
-            await Context.SaveChangesAsync();
+            return Task.CompletedTask;
         }
         
-        protected async Task DeleteAsync(TEntity entity)
+        protected Task DeleteAsync(TEntity entity)
         {
             if (Context.Entry(entity).State == EntityState.Detached)
             {
@@ -62,7 +66,8 @@ namespace RPGHexplorer.Lib.DataBases
             }
             
             DB.Remove(entity);
-            await Context.SaveChangesAsync();
+            
+            return Task.CompletedTask;
         }
     }
 }

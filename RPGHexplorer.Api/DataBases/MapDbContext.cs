@@ -1,10 +1,11 @@
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RPGHexplorer.Common.TileMaps;
-using RPGHexplorer.Lib.TileMaps;
+using RPGHexplorer.Lib.Repositories;
 
-namespace RPGHexplorer.Lib.DataBases
+namespace RPGHexplorer.Api.DataBases
 {
-    public class MapDbContext : DbContext
+    public class MapDbContext : DbContext, IUnitOfWork
     {
         public MapDbContext(DbContextOptions<MapDbContext> options)
             : base(options)
@@ -17,6 +18,11 @@ namespace RPGHexplorer.Lib.DataBases
         {
             modelBuilder.Entity<Tile>()
                 .HasKey(a => new { a.MapId, a.Id });
+        }
+        
+        public async Task SaveAsync()
+        {
+            await SaveChangesAsync();
         }
     }
 }

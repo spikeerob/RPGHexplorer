@@ -16,4 +16,8 @@
       <ProjectReference Include="..\RPGHexplorer.Web\RPGHexplorer.Web.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="DataBases\Repositories" />
+    </ItemGroup>
+
 </Project>

@@ -8,9 +8,10 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using RPGHexplorer.Lib.DataBases;
-using RPGHexplorer.Lib.TileMaps.Repositories;
-using RPGHexplorer.Lib.TileMaps.Services;
+using RPGHexplorer.Api.DataBases;
+using RPGHexplorer.Api.DataBases.Repositories;
+using RPGHexplorer.Lib.Repositories;
+using RPGHexplorer.Lib.Services;
 
 namespace RPGHexplorer.Api
 {
@@ -26,7 +27,7 @@ namespace RPGHexplorer.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
             services.AddResponseCompression(options =>
             {

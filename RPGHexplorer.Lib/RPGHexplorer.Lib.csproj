@@ -8,10 +8,16 @@
     <ItemGroup>
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.3" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.3" />
+      <PackageReference Include="Npgsql" Version="4.0.4" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.2" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\RPGHexplorer.Common\RPGHexplorer.Common.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Services" />
     </ItemGroup>
 
 </Project>

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using RPGHexplorer.Common.TileMaps;
-using RPGHexplorer.Lib.DataBases;
+using RPGHexplorer.Lib.Repositories;
 
-namespace RPGHexplorer.Lib.TileMaps.Repositories
+namespace RPGHexplorer.Api.DataBases.Repositories
 {
     public class DbTileRepository : BaseDbRepository<Tile>, ITileRepository
     {

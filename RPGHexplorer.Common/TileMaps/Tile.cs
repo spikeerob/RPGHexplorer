@@ -14,17 +14,18 @@ namespace RPGHexplorer.Common.TileMaps
 
         public Hex Hex => Hex.FromAxialCoords(Q, R);
 
-        public static Tile From(int Q, int R)
+        public static Tile From(string mapId, int Q, int R)
         {
             return new Tile
             {
                 Id = $"{Q}-{R}",
+                MapId = mapId,
             };
         }
 
-        public static Tile From(Hex hex)
+        public static Tile From(string mapId, Hex hex)
         {
-            return From(hex.Q, hex.R);
+            return From(mapId, hex.Q, hex.R);
         }
     }
 }
