@@ -5,13 +5,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using RPGHexplorer.Api.DataBases;
-using RPGHexplorer.Api.DataBases.Repositories;
-using RPGHexplorer.Lib.Repositories;
-using RPGHexplorer.Lib.Services;
+using RPGHexplorer.Lib.DataBases;
+using RPGHexplorer.Lib.TileMaps.Repositories;
+using RPGHexplorer.Lib.TileMaps.Services;
 
 namespace RPGHexplorer.Api
 {
@@ -37,14 +35,14 @@ namespace RPGHexplorer.Api
                     WasmMediaTypeNames.Application.Wasm,
                 });
             });
-            
-            services.AddDbContext<MapDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("MapDatabase")));
-            
-            services.AddScoped<IMapRepository, DbMapRepository>();
-            services.AddScoped<ITileRepository, DbTileRepository>();
 
-            services.AddScoped<TileMapService, TileMapService>();
+            services.AddSingleton<LiteDbFactory>(
+                new LiteDbFactory(Configuration.GetConnectionString("MapDatabase")));
+
+            services.AddSingleton<IMapRepository, DbMapRepository>();
+            services.AddSingleton<ITileRepository, DbTileRepository>();
+
+            services.AddSingleton<TileMapService, TileMapService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

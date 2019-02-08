@@ -1,15 +1,19 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using RPGHexplorer.Common.TileMaps;
-using RPGHexplorer.Lib.Repositories;
+using RPGHexplorer.Lib.DataBases;
+using RPGHexplorer.Lib.TileMaps.Repositories;
 
-namespace RPGHexplorer.Api.DataBases.Repositories
+namespace RPGHexplorer.Lib.TileMaps.Repositories
 {
     public class DbMapRepository : BaseDbRepository<Map>, IMapRepository
     {
-        public DbMapRepository(MapDbContext context) : base(context)
+        public DbMapRepository(LiteDbFactory factory) : base(factory)
         {
+            
         }
+
+        protected override string TableName => LiteDbTables.Maps;
 
         public Task<List<Map>> GetMapsAsync()
         {

@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RPGHexplorer.Common.TileMaps;
-using RPGHexplorer.Lib.Services;
+using RPGHexplorer.Lib.TileMaps.Services;
 
 namespace RPGHexplorer.Api.Controllers
 {

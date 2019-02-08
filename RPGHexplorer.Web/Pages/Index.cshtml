@@ -2,30 +2,29 @@
 @using RPGHexplorer.Common.TileMaps
 @inject HttpClient Http
 
-<h1>@MapName Map</h1>
+<h1>@tileMap?.Map.Name Map</h1>
 
 <button onclick="@CreateTestMap">Create test map</button>
+<button onclick="@ReloadTileMap">Load test map</button>
 
 
-<TileMapComponent Tiles="@Tiles"></TileMapComponent> 
+<TileMapComponent TileMap="@tileMap"></TileMapComponent> 
 
 
 @functions{
-               
-    private TileMap TileMap { get; set; }
 
-    private string MapName => TileMap?.Map.Name ?? "Unknown";
+    private TileMap tileMap;
 
-    private List<Tile> Tiles => TileMap?.Tiles ?? new List<Tile>();
+    private List<Tile> Tiles => tileMap?.Tiles ?? new List<Tile>();
 
     private async Task CreateTestMap()
     {
-        TileMap = await Http.PostJsonAsync<TileMap>("/api/tilemap", null);
+        tileMap = await Http.PostJsonAsync<TileMap>("/api/tilemap", null);
     }
     
     private async Task ReloadTileMap()
     {
-        TileMap = await Http.GetJsonAsync<TileMap>("/api/tilemap");
+        tileMap = await Http.GetJsonAsync<TileMap>("/api/tilemap/test");
     }
 
 }
