@@ -1,5 +1,8 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RPGHexplorer.Common.Api;
 using RPGHexplorer.Common.Hexes;
 using RPGHexplorer.Common.TileMaps;
 using RPGHexplorer.Lib.TileMaps.Repositories;
@@ -17,9 +20,14 @@ namespace RPGHexplorer.Lib.TileMaps.Services
             _tileRepository = tileRepository;
         }
 
-        public async Task<TileMap> CreateNewTileMap(string name)
+        public async Task<List<Map>> ListMapsAsync()
         {
-            var mapId = "test";
+            return await _mapRepository.GetMapsAsync();
+        }
+        
+        public async Task<Map> CreateNewTileMap(string name)
+        {
+            var mapId = Guid.NewGuid().ToString();
             
             var map = new Map
             {
@@ -31,22 +39,36 @@ namespace RPGHexplorer.Lib.TileMaps.Services
 
             var tiles = HexMap.FromHexagon(4).Hexes.Select(h => Tile.From(mapId, h)).ToList();
             await _tileRepository.SaveTilesAsync(tiles);
-            
-            return TileMap.From(map, tiles);
+
+            return map;
         }
 
-        public async Task<TileMap> GetTileMap(string id)
+        public async Task<Map> GetMapAsync(string mapId)
         {
-            var map = await _mapRepository.GetMapAsync(id);
+            var map = await _mapRepository.GetMapAsync(mapId);
 
-            if (map == null)
-            {
-                return null;
-            }
+            return map;
+        }
+        
+        public async Task DeleteMapAsync(string mapId)
+        {
+            await _mapRepository.DeleteMapAsync(mapId);
+        }
 
-            var tiles = await _tileRepository.GetTilesAsync(id);
+        public async Task<List<Tile>> GetTilesAsync(string mapId)
+        {        
+            var tiles = await _tileRepository.GetTilesAsync(mapId);
 
-            return TileMap.From(map, tiles);
+            return tiles;
+        }
+
+        public async Task EditTileAsync(string mapId, string tileKey, EditTileRequest request)
+        {
+            var tile = await _tileRepository.GetTileAsync(mapId, tileKey);
+
+            tile.TerrainTypeId = request.TerrainTypeId;
+            
+            await _tileRepository.SaveTileAsync(tile);
         }
     }
 }

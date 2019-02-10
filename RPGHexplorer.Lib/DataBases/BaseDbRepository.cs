@@ -20,7 +20,19 @@ namespace RPGHexplorer.Lib.DataBases
             _factory = factory;
         }
 
-        protected Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter = null)
+        protected Task<List<T>> GetAllAsync()
+        {
+            using (var db = GetDb())
+            {
+                var collection = db.GetCollection<T>(TableName);
+
+                var documents = collection.FindAll().ToList();
+
+                return Task.FromResult(documents);
+            }
+        }
+        
+        protected Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter)
         {
             using (var db = GetDb())
             {
@@ -93,9 +105,14 @@ namespace RPGHexplorer.Lib.DataBases
             return Task.CompletedTask;
         }
         
-        protected Task DeleteAsync(T document)
+        protected Task DeleteAsync(string id)
         {
-            
+            using (var db = GetDb())
+            {
+                var collection = db.GetCollection<T>(TableName);
+
+                collection.Delete(id);
+            }
             
             return Task.CompletedTask;
         }

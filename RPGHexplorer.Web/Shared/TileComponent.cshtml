@@ -1,5 +1,13 @@
-@using RPGHexplorer.Common.Hexes
-<polygon points="@GetPointString()" stroke="black" fill="grey" />
+@inject TileClickService TileClickService
+@inject ToolState ToolState
+
+<polygon points="@GetPointString()" 
+         onclick="@OnClick"
+         onmousemove="@OnMouseOver"
+         onmousedown="@OnMouseDown"
+         title="@Tile.TileKey"
+         stroke="black" 
+         fill="@GetColorHex()" />
 
 @functions {
 
@@ -7,13 +15,32 @@
     private Layout Layout { get; set; }
 
     [Parameter]
-    private Hex Hex { get; set; }
+    private Tile Tile { get; set; }
 
     private string GetPointString()
     {
-        var corners = Layout.GetHexCorners(Hex);
+        var corners = Layout.GetHexCorners(Tile.Hex);
 
         return string.Join(" ", corners.Select(c => $"{c.X},{c.Y}"));
     }
 
+    private string GetColorHex()
+    {
+        return TerrainType.All.FirstOrDefault(t => t.Id == Tile.TerrainTypeId)?.ColorHex ?? "grey";
+    }
+
+    private async Task OnClick()
+    {
+        await TileClickService.ClickedAsync(Tile.TileKey);
+    }
+    
+    private async Task OnMouseOver()
+    {
+        await TileClickService.OnMouseOverAsync(Tile.TileKey);
+    }
+    
+    private void OnMouseDown()
+    {
+        ToolState.StartDragging();
+    }
 }

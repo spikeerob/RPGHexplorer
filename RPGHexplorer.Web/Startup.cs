@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Blazor.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using RPGHexplorer.Web.Services;
 
 namespace RPGHexplorer.Web
 {
@@ -7,7 +8,11 @@ namespace RPGHexplorer.Web
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            
+            services.AddSingleton<ApiClient>();
+            services.AddSingleton<MapStore>();
+            services.AddSingleton<ToolState>();
+            services.AddSingleton<MapState>();
+            services.AddSingleton<TileClickService>();
         }
 
         public void Configure(IBlazorApplicationBuilder app)

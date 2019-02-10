@@ -22,9 +22,14 @@ namespace RPGHexplorer.Lib.DataBases
             {
                 var tiles = db.GetCollection<Tile>(LiteDbTables.Tiles);
                 tiles.EnsureIndex(t => t.MapId);
-                tiles.EnsureIndex(t => t.TileId);
+                tiles.EnsureIndex(t => t.TileKey);
 
             }
+            
+            var mapper = BsonMapper.Global;
+
+            mapper.Entity<Tile>()
+                .Id(x => x.Id);
 
             return db;
         }

@@ -12,6 +12,6 @@ namespace RPGHexplorer.Lib.TileMaps.Repositories
 
         Task SaveMapAsync(Map map);
 
-        Task DeleteMapAsync(Map map);
+        Task DeleteMapAsync(string mapId);
     }
 }

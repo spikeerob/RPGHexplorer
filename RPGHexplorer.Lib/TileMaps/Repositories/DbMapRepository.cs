@@ -30,9 +30,9 @@ namespace RPGHexplorer.Lib.TileMaps.Repositories
             return SaveAsync(map);
         }
 
-        public Task DeleteMapAsync(Map map)
+        public Task DeleteMapAsync(string mapId)
         {
-            return DeleteAsync(map);
+            return DeleteAsync(mapId);
         }
     }
 }

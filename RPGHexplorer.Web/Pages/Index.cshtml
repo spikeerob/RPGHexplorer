@@ -1,30 +1,25 @@
 ﻿@page "/"
-@using RPGHexplorer.Common.TileMaps
 @inject HttpClient Http
+@inject MapState MapState
+@inject MapStore MapStore
 
-<h1>@tileMap?.Map.Name Map</h1>
-
-<button onclick="@CreateTestMap">Create test map</button>
-<button onclick="@ReloadTileMap">Load test map</button>
-
-
-<TileMapComponent TileMap="@tileMap"></TileMapComponent> 
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <MapComponent></MapComponent>
+        </div>
+        <div class="col-sm">
+            <SideBar></SideBar>
+        </div>
+    </div>
+</div>
 
 
 @functions{
 
-    private TileMap tileMap;
-
-    private List<Tile> Tiles => tileMap?.Tiles ?? new List<Tile>();
-
-    private async Task CreateTestMap()
+    protected override async Task OnInitAsync()
     {
-        tileMap = await Http.PostJsonAsync<TileMap>("/api/tilemap", null);
-    }
-    
-    private async Task ReloadTileMap()
-    {
-        tileMap = await Http.GetJsonAsync<TileMap>("/api/tilemap/test");
+        await MapStore.ReloadMapsAsync();
     }
 
 }

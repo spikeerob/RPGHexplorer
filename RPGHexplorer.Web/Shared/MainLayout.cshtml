@@ -1,15 +1,29 @@
 @inherits BlazorLayoutComponent
+@inject ToolState ToolState
 
-<div class="sidebar">
-    <NavMenu />
+<div id="app" onmouseup="@OnMouseUp">
+    <div class="toolbar">
+        <ToolBar></ToolBar>
+    </div>
+    
+    <div class="main">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <span class="navbar-brand mb-0 h1">RPGHexplorer</span>
+            <MapManager></MapManager>
+        </nav>
+    
+        <div class="content px-4">
+            @Body
+        </div>
+    </div>
 </div>
 
-<div class="main">
-    <div class="top-row px-4">
-        <a href="http://blazor.net" target="_blank" class="ml-md-auto">About</a>
-    </div>
+@functions
+{
 
-    <div class="content px-4">
-        @Body
-    </div>
-</div>
+    private void OnMouseUp()
+    {
+        ToolState.StopDragging();
+    }
+
+}

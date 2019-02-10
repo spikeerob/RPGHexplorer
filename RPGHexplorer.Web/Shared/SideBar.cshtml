@@ -1,0 +1,28 @@
+@inject ToolState ToolState
+
+@if (ToolState.IsView)
+{
+    <p>View</p>
+}
+else if (ToolState.IsTerrain)
+{
+    foreach (var terrainType in TerrainType.All)
+    {
+        <button
+            class="sidebar-grid-button btn @(ToolState.CurrentTerrainTypeId == terrainType.Id ? "active" : "")"
+            style="background-color: @terrainType.ColorHex"
+            onclick="@(() => ToolState.SelectTerrain(terrainType.Id))">
+            @terrainType.Name
+        </button>
+    }
+}
+
+@functions
+{
+
+    protected override void OnInit()
+    {
+        ToolState.OnToolChange += StateHasChanged;
+    }
+
+}

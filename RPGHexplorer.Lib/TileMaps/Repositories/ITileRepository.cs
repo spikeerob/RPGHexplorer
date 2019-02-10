@@ -8,12 +8,10 @@ namespace RPGHexplorer.Lib.TileMaps.Repositories
     {
         Task<List<Tile>> GetTilesAsync(string mapId);
 
-        Task<Tile> GetTileAsync(string mapId, string tileId);
+        Task<Tile> GetTileAsync(string mapId, string tileKey);
 
         Task SaveTileAsync(Tile tile);
         
         Task SaveTilesAsync(IEnumerable<Tile> tiles);
-
-        Task DeleteTileAsync(Tile tile);
     }
 }

@@ -19,9 +19,9 @@ namespace RPGHexplorer.Lib.TileMaps.Repositories
             return GetAllAsync(t => t.MapId == mapId);
         }
 
-        public Task<Tile> GetTileAsync(string mapId, string tileId)
+        public Task<Tile> GetTileAsync(string mapId, string tileKey)
         {
-            return GetAsync(t => t.MapId == mapId && t.TileId == tileId);
+            return GetAsync(Tile.BuildId(mapId, tileKey));
         }
 
         public Task SaveTileAsync(Tile tile)
@@ -32,11 +32,6 @@ namespace RPGHexplorer.Lib.TileMaps.Repositories
         public Task SaveTilesAsync(IEnumerable<Tile> tiles)
         {
             return SaveAsync(tiles);
-        }
-
-        public Task DeleteTileAsync(Tile tile)
-        {
-            return DeleteAsync(tile);
         }
     }
 }

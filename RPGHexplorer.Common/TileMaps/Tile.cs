@@ -4,22 +4,31 @@ namespace RPGHexplorer.Common.TileMaps
 {
     public class Tile
     {
-        public string TileId { get; private set; }
+        public string Id { get; set; }
         
         public string MapId { get; set; }
+        
+        public string TileKey { get; set; }
+        
+        public int Q { get; set; }
 
-        public int Q => int.Parse(TileId.Split('^')[0]);
-
-        public int R => int.Parse(TileId.Split('^')[1]);
+        public int R { get; set; }
 
         public Hex Hex => Hex.FromAxialCoords(Q, R);
+        
+        public string TerrainTypeId { get; set; }
 
         public static Tile From(string mapId, int q, int r)
         {
+            var tileKey = BuildTileKey(q, r);
+            
             return new Tile
             {
-                TileId = $"{q}^{r}",
+                Id = BuildId(mapId, tileKey),
                 MapId = mapId,
+                TileKey = tileKey,
+                Q = q,
+                R = r,
             };
         }
 
@@ -27,5 +36,9 @@ namespace RPGHexplorer.Common.TileMaps
         {
             return From(mapId, hex.Q, hex.R);
         }
+
+        public static string BuildId(string mapId, string tileKey) => $"{mapId}.{tileKey}";
+
+        public static string BuildTileKey(int q, int r) => $"{q}^{r}";
     }
 }
