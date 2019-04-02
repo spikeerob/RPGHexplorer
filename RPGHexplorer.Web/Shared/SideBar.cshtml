@@ -1,28 +1,21 @@
 @inject ToolState ToolState
+@using RPGHexplorer.Web.Shared.SideBarPanels
 
-@if (ToolState.IsView)
-{
-    <p>View</p>
-}
-else if (ToolState.IsTerrain)
-{
-    foreach (var terrainType in TerrainType.All)
+<div class="border rounded">
+    @if (ToolState.IsView)
     {
-        <button
-            class="sidebar-grid-button btn @(ToolState.CurrentTerrainTypeId == terrainType.Id ? "active" : "")"
-            style="background-color: @terrainType.ColorHex"
-            onclick="@(() => ToolState.SelectTerrain(terrainType.Id))">
-            @terrainType.Name
-        </button>
+        <ViewPanel></ViewPanel>
     }
-}
+    else if (ToolState.IsTerrain)
+    {
+        <TerrainPanel></TerrainPanel>
+    }
+</div>
 
 @functions
 {
-
     protected override void OnInit()
     {
         ToolState.OnToolChange += StateHasChanged;
     }
-
 }
