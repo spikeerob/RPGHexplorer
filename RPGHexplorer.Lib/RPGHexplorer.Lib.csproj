@@ -13,4 +13,8 @@
       <ProjectReference Include="..\RPGHexplorer.Common\RPGHexplorer.Common.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Encounters\Services" />
+    </ItemGroup>
+
 </Project>
