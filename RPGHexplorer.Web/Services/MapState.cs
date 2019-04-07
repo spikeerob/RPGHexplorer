@@ -2,17 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RPGHexplorer.Common.Api;
 using RPGHexplorer.Common.TileMaps;
 
 namespace RPGHexplorer.Web.Services
 {
     public class MapState
     {
-        private readonly ApiClient _apiClient;
+        private readonly ITileMapService _tileMapService;
 
-        public MapState(ApiClient apiClient)
+        public MapState(ITileMapService tileMapService)
         {
-            _apiClient = apiClient;
+            _tileMapService = tileMapService;
         }
 
         public Map Map { get; private set; }
@@ -31,9 +32,10 @@ namespace RPGHexplorer.Web.Services
             OnTilesChange?.Invoke();
         }
 
-        public async Task LoadMapAsync(Map map)
+        public async Task LoadMapAsync(string mapId)
         {
-            var tiles = await _apiClient.GetTiles(map.Id);
+            var map = await _tileMapService.GetMapAsync(mapId);
+            var tiles = await _tileMapService.GetTilesAsync(mapId);
             
             SetMap(map, tiles);
         }
@@ -47,7 +49,7 @@ namespace RPGHexplorer.Web.Services
             
             mutator.Invoke(tile);
 
-            await _apiClient.EditTileAsync(tile);
+            await _tileMapService.SaveTileAsync(tile);
             
             OnTilesChange?.Invoke();
         }

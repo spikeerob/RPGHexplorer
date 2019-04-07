@@ -9,7 +9,7 @@ using RPGHexplorer.Lib.TileMaps.Repositories;
 
 namespace RPGHexplorer.Lib.TileMaps.Services
 {
-    public class TileMapService
+    public class TileMapService : ITileMapService
     {
         private readonly IMapRepository _mapRepository;
         private readonly ITileRepository _tileRepository;
@@ -25,14 +25,14 @@ namespace RPGHexplorer.Lib.TileMaps.Services
             return await _mapRepository.GetMapsAsync();
         }
         
-        public async Task<Map> CreateNewTileMap(string name)
+        public async Task<Map> CreateMapAsync(CreateMapRequest request)
         {
             var mapId = Guid.NewGuid().ToString();
             
             var map = new Map
             {
                 Id = mapId,
-                Name = name,
+                Name = request.Name,
             };
             
             await _mapRepository.SaveMapAsync(map);
@@ -62,12 +62,8 @@ namespace RPGHexplorer.Lib.TileMaps.Services
             return tiles;
         }
 
-        public async Task EditTileAsync(string mapId, string tileKey, EditTileRequest request)
+        public async Task SaveTileAsync(Tile tile)
         {
-            var tile = await _tileRepository.GetTileAsync(mapId, tileKey);
-
-            tile.TerrainTypeId = request.TerrainTypeId;
-            
             await _tileRepository.SaveTileAsync(tile);
         }
     }

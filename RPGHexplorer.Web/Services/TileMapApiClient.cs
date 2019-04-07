@@ -7,11 +7,11 @@ using RPGHexplorer.Common.TileMaps;
 
 namespace RPGHexplorer.Web.Services
 {
-    public class ApiClient
+    public class TileMapApiClient : ITileMapService
     {
         private readonly HttpClient _client;
 
-        public ApiClient(HttpClient client)
+        public TileMapApiClient(HttpClient client)
         {
             _client = client;
         }
@@ -21,27 +21,24 @@ namespace RPGHexplorer.Web.Services
             return _client.GetJsonAsync<List<Map>>("/api/maps");
         }
         
-        public Task<Map> CreateMapAsync(string name)
+        public Task<Map> CreateMapAsync(CreateMapRequest request)
         {
-            return _client.PostJsonAsync<Map>("/api/maps", new CreateMapRequest
-            {
-                Name = name,
-            });
+            return _client.PostJsonAsync<Map>("/api/create-map", request);
         }
 
-        public Task<List<Tile>> GetTiles(string mapId)
+        public Task<Map> GetMapAsync(string mapId)
+        {
+            return _client.GetJsonAsync<Map>($"/api/maps/{mapId}");
+        }
+
+        public Task<List<Tile>> GetTilesAsync(string mapId)
         {
             return _client.GetJsonAsync<List<Tile>>($"/api/maps/{mapId}/tiles");
         }
         
-        public Task<Tile> EditTileAsync(Tile tile)
+        public Task SaveTileAsync(Tile tile)
         {
-            var request = new EditTileRequest
-            {
-                TerrainTypeId = tile.TerrainTypeId,
-            };
-            
-            return _client.PutJsonAsync<Tile>($"/api/maps/{tile.MapId}/tiles/{tile.TileKey}", request);
+            return _client.PostJsonAsync<Tile>($"/api/tiles", tile);
         }
 
         public Task DeleteMapAsync(string mapId)

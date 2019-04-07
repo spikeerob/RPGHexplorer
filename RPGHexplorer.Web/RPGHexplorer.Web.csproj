@@ -16,4 +16,8 @@
     <ProjectReference Include="..\RPGHexplorer.Common\RPGHexplorer.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Shared\ModalContents" />
+  </ItemGroup>
+
 </Project>

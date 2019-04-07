@@ -1,0 +1,75 @@
+@page "/maps"
+@using Microsoft.AspNetCore.Blazor.Services
+@using RPGHexplorer.Common.Api
+
+<div class="container">
+    <h2>Maps</h2>
+    
+    <div class="form-inline">
+        <input class="form-control mr-sm-2" type="text" placeholder="Name" bind="@NewMapName"/>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="@CreateMap">Create map</button>
+    </div>
+
+    <table class="table my-2">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var map in Maps)
+        {
+            <tr>
+                <td>@map.Id</td>
+                <td>@map.Name</td>
+                <td>
+                    <a class="btn btn-outline-success my-2 my-sm-0" href="/maps/@map.Id">View</a>
+                    <button class="btn btn-outline-danger my-2 my-sm-0" onclick="@(e => DeleteMap(map))">Delete</button>
+                </td>
+            </tr>
+        }
+    </table>
+    
+</div>
+
+
+@functions
+{
+    
+    [Inject]
+    ITileMapService TileMapService { get; set; }
+    
+    [Inject]
+    IUriHelper UriHelper { get; set; }
+
+    string NewMapName { get; set; }
+    
+    List<Map> Maps { get; set; } = new List<Map>();
+    
+    protected override async Task OnInitAsync()
+    {
+        Maps = await TileMapService.ListMapsAsync();
+    }
+    
+    private async Task CreateMap()
+    {
+        if (string.IsNullOrWhiteSpace(NewMapName))
+        {
+            return;
+        }
+        
+        var map = await TileMapService.CreateMapAsync(new CreateMapRequest
+        {
+            Name = NewMapName,
+        });
+        
+        UriHelper.NavigateTo("/maps/" + map.Id);
+    }
+    
+    private async Task DeleteMap(Map map)
+    {
+        await TileMapService.DeleteMapAsync(map.Id);
+
+        Maps.Remove(map);
+    }
+
+}

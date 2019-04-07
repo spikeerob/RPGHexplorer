@@ -1,4 +1,3 @@
-@using RPGHexplorer.Web.Shared.ModalContents
 @inherits BlazorLayoutComponent
 @inject ToolState ToolState
 
@@ -30,17 +29,10 @@
 
 @functions
 {
-    [Inject]
-    ModalService ModalService { get; set; }
 
     private void OnMouseUp()
     {
         ToolState.StopDragging();
-    }
-
-    private void OpenMapManager()
-    {
-        ModalService.Show("Map Manager", typeof(MapManager));
     }
 
 }
