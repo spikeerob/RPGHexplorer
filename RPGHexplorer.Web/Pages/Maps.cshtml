@@ -1,0 +1,41 @@
+@page "/maps"
+@using Microsoft.AspNetCore.Blazor.Services
+
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var map in MapStore.GetMaps())
+        {
+            <tr>
+                <td>@map.Id</td>
+                <td>@map.Name</td>
+                <td>
+                    <a class="btn btn-outline-success my-2 my-sm-0" href="/maps/@map.Id">View</a>
+                    <button class="btn btn-outline-danger my-2 my-sm-0" onclick="@(e => DeleteMap(map.Id))">Delete</button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+@functions{
+
+    [Inject]
+    MapStore MapStore { get; set; }
+    
+    protected override async Task OnInitAsync()
+    {
+        await MapStore.ReloadMapsAsync();
+    }
+    
+    private async Task DeleteMap(string mapId)
+    {
+        await MapStore.DeleteMapAsync(mapId);
+    }
+
+}

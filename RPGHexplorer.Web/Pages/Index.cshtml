@@ -1,25 +1,11 @@
 ﻿@page "/"
-@inject HttpClient Http
-@inject MapState MapState
-@inject MapStore MapStore
 
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <MapComponent></MapComponent>
-        </div>
-        <div class="col-sm">
-            <SideBar></SideBar>
-        </div>
-    </div>
+
 </div>
 
 
 @functions{
 
-    protected override async Task OnInitAsync()
-    {
-        await MapStore.ReloadMapsAsync();
-    }
 
 }

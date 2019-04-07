@@ -1,0 +1,34 @@
+@page "/maps/{MapId}"
+
+<div class="toolbar">
+    <ToolBar></ToolBar>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <MapComponent></MapComponent>
+        </div>
+        <div class="col-sm">
+            <SideBar></SideBar>
+        </div>
+    </div>
+</div>
+
+@functions
+{
+    [Parameter]
+    string MapId { get; set; }
+
+    [Inject]
+    MapStore MapStore { get; set; }
+    
+    protected override async Task OnInitAsync()
+    {
+        await MapStore.ReloadMapsAsync();
+        await MapStore.LoadMapAsync(MapId);
+    }
+
+
+}
+
