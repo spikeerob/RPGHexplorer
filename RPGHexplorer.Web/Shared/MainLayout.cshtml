@@ -1,14 +1,30 @@
+@using RPGHexplorer.Web.Shared.ModalContents
 @inherits BlazorLayoutComponent
 @inject ToolState ToolState
 
+<Modal />
+
 <div id="app" onmouseup="@OnMouseUp">
+    
     <div class="toolbar">
         <ToolBar></ToolBar>
     </div>
-    
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <span class="navbar-brand mb-0 h1">RPGHexplorer</span>
-        <MapManager></MapManager>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" onclick="@OpenMapManager">Maps</a>
+                </li>
+            </ul>
+        </div>
+        
     </nav>
 
     <div class="content">
@@ -18,10 +34,17 @@
 
 @functions
 {
+    [Inject]
+    ModalService ModalService { get; set; }
 
     private void OnMouseUp()
     {
         ToolState.StopDragging();
+    }
+
+    private void OpenMapManager()
+    {
+        ModalService.Show("Map Manager", typeof(MapManager));
     }
 
 }

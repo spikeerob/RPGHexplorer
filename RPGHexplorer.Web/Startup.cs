@@ -9,10 +9,14 @@ namespace RPGHexplorer.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<ApiClient>();
+            
             services.AddSingleton<MapStore>();
+            
             services.AddSingleton<ToolState>();
             services.AddSingleton<MapState>();
+            
             services.AddSingleton<TileClickService>();
+            services.AddScoped<ModalService>();
         }
 
         public void Configure(IBlazorApplicationBuilder app)

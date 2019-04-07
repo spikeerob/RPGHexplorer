@@ -1,0 +1,57 @@
+<div class="bmodal-container @(IsVisible ? "bmodal-active" : string.Empty)">
+
+    <div class="bmodal-overlay" onclick="@CloseModal"></div>
+
+    <div class="bmodal">
+        <div class="bmodal-header">
+            <h3 class="bmodal-title">@Title</h3>
+            <button type="button" class="bmodal-close" onclick="@CloseModal">
+                <span>&times;</span>
+            </button>
+        </div>
+        <div class="bmodal-content">
+            @Content
+        </div>
+    </div>
+
+</div>
+
+@functions
+{
+    [Inject] 
+    ModalService ModalService { get; set; }
+
+    private bool IsVisible { get; set; }
+    private string Title { get; set; }
+    private RenderFragment Content { get; set; }
+		  
+    protected override void OnInit()
+    {
+        ModalService.OnShow += ShowModal;
+        ModalService.OnClose += CloseModal;
+    }
+
+    private void ShowModal(string title, RenderFragment content)
+    {
+        Title = title;
+        Content = content;
+        IsVisible = true;
+			
+        StateHasChanged();
+    }
+
+    private void CloseModal()
+    {
+        IsVisible = false;
+        Title = "";
+        Content = null;
+			
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        ModalService.OnShow -= ShowModal;
+        ModalService.OnClose -= CloseModal;
+    }
+}
