@@ -125,7 +125,7 @@ app {
 
 /* Modal */
 
-.bmodal-container {
+.b-modal-container {
     display: none;
     align-items: center;
     justify-content: center;
@@ -135,7 +135,7 @@ app {
     z-index: 2;
 }
 
-.bmodal-overlay {
+.b-modal-overlay {
     display: block;
     position: fixed;
     width: 100%;
@@ -144,11 +144,11 @@ app {
     background-color: rgba(0,0,0,0.5);
 }
 
-.bmodal-active {
+.b-modal-active {
     display: flex;
 }
 
-.bmodal {
+.b-modal {
     display: flex;
     flex-direction: column;
     width: 50rem;
@@ -159,18 +159,18 @@ app {
     z-index: 4;
 }
 
-.bmodal-header {
+.b-modal-header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     padding: 0 0 2rem 0;
 }
 
-.bmodal-title {
+.b-modal-title {
     margin-bottom: 0;
 }
 
-.bmodal-close {
+.b-modal-close {
     padding: 1rem;
     margin: -1rem -1rem -1rem auto;
     background-color: transparent;
