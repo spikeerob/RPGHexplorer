@@ -12,9 +12,9 @@ namespace RPGHexplorer.Api.Controllers
     [ApiController]
     public class TileMapController : ControllerBase
     {
-        private readonly TileMapService _tileMapService;
+        private readonly ITileMapService _tileMapService;
 
-        public TileMapController(TileMapService tileMapService)
+        public TileMapController(ITileMapService tileMapService)
         {
             _tileMapService = tileMapService;
         }

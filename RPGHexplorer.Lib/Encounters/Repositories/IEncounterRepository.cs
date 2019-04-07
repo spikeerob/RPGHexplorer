@@ -11,5 +11,7 @@ namespace RPGHexplorer.Lib.Encounters.Repositories
         Task<Encounter> GetAsync(string encounterId);
 
         Task SaveAsync(Encounter encounter);
+
+        Task DeleteAsync(string encounterId);
     }
 }
