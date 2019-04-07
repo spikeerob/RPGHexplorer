@@ -8,8 +8,6 @@ namespace RPGHexplorer.Common.Encounters
 
         public string Name { get; set; }
 
-        public string Description { get; set; }
-        
-        public List<EncounterMonster> EncounterMonsters { get; set; }
+        public string Details { get; set; }
     }
 }
