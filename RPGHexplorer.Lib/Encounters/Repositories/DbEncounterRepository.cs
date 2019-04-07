@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using RPGHexplorer.Common.Encounters;
 using RPGHexplorer.Lib.DataBases;
@@ -12,14 +13,5 @@ namespace RPGHexplorer.Lib.Encounters.Repositories
         {
         }
 
-        public Task<Encounter> GetEncounterAsync(string encounterId)
-        {
-            return GetAsync(encounterId);
-        }
-
-        public Task SaveEncounterAsync(Encounter encounter)
-        {
-            return SaveAsync(encounter);
-        }
     }
 }

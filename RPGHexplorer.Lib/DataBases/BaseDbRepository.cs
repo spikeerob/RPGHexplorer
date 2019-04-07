@@ -20,7 +20,7 @@ namespace RPGHexplorer.Lib.DataBases
             _factory = factory;
         }
 
-        protected Task<List<T>> GetAllAsync()
+        public Task<List<T>> GetAllAsync()
         {
             using (var db = GetDb())
             {
@@ -32,7 +32,7 @@ namespace RPGHexplorer.Lib.DataBases
             }
         }
         
-        protected Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter)
+        public Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter)
         {
             using (var db = GetDb())
             {
@@ -44,7 +44,7 @@ namespace RPGHexplorer.Lib.DataBases
             }
         }
         
-        protected Task<T> GetAsync(Expression<Func<T, bool>> filter)
+        public Task<T> GetAsync(Expression<Func<T, bool>> filter)
         {
             using (var db = GetDb())
             {
@@ -56,7 +56,7 @@ namespace RPGHexplorer.Lib.DataBases
             }
         }
 
-        protected Task<List<T>> GetAsync(IEnumerable<string> ids)
+        public Task<List<T>> GetAsync(IEnumerable<string> ids)
         {
             using (var db = GetDb())
             {
@@ -69,7 +69,7 @@ namespace RPGHexplorer.Lib.DataBases
             }
         }
         
-        protected Task<T> GetAsync(string id)
+        public Task<T> GetAsync(string id)
         {
             using (var db = GetDb())
             {
@@ -81,7 +81,7 @@ namespace RPGHexplorer.Lib.DataBases
             }
         }
         
-        protected Task SaveAsync(T document)
+        public Task SaveAsync(T document)
         {
             using (var db = GetDb())
             {
@@ -93,7 +93,7 @@ namespace RPGHexplorer.Lib.DataBases
             return Task.CompletedTask;
         }
         
-        protected Task SaveAsync(IEnumerable<T> documents)
+        public Task SaveAsync(IEnumerable<T> documents)
         {
             using (var db = GetDb())
             {
@@ -105,7 +105,7 @@ namespace RPGHexplorer.Lib.DataBases
             return Task.CompletedTask;
         }
         
-        protected Task DeleteAsync(string id)
+        public Task DeleteAsync(string id)
         {
             using (var db = GetDb())
             {

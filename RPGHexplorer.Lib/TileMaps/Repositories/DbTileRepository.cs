@@ -14,24 +14,14 @@ namespace RPGHexplorer.Lib.TileMaps.Repositories
 
         protected override string TableName => LiteDbTables.Tiles;
 
-        public Task<List<Tile>> GetTilesAsync(string mapId)
+        public Task<List<Tile>> GetAllAsync(string mapId)
         {
             return GetAllAsync(t => t.MapId == mapId);
         }
 
-        public Task<Tile> GetTileAsync(string mapId, string tileKey)
+        public Task<Tile> GetAsync(string mapId, string tileKey)
         {
-            return GetAsync(Tile.BuildId(mapId, tileKey));
-        }
-
-        public Task SaveTileAsync(Tile tile)
-        {
-            return SaveAsync(tile);
-        }
-
-        public Task SaveTilesAsync(IEnumerable<Tile> tiles)
-        {
-            return SaveAsync(tiles);
+            return base.GetAsync(Tile.BuildId(mapId, tileKey));
         }
     }
 }

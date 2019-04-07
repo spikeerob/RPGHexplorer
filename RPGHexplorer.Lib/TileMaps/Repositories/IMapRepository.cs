@@ -6,12 +6,12 @@ namespace RPGHexplorer.Lib.TileMaps.Repositories
 {
     public interface IMapRepository
     {
-        Task<List<Map>> GetMapsAsync();
+        Task<List<Map>> GetAllAsync();
 
-        Task<Map> GetMapAsync(string mapId);
+        Task<Map> GetAsync(string mapId);
 
-        Task SaveMapAsync(Map map);
+        Task SaveAsync(Map map);
 
-        Task DeleteMapAsync(string mapId);
+        Task DeleteAsync(string mapId);
     }
 }

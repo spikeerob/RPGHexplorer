@@ -6,12 +6,12 @@ namespace RPGHexplorer.Lib.TileMaps.Repositories
 {
     public interface ITileRepository
     {
-        Task<List<Tile>> GetTilesAsync(string mapId);
+        Task<List<Tile>> GetAllAsync(string mapId);
 
-        Task<Tile> GetTileAsync(string mapId, string tileKey);
+        Task<Tile> GetAsync(string mapId, string tileKey);
 
-        Task SaveTileAsync(Tile tile);
+        Task SaveAsync(Tile tile);
         
-        Task SaveTilesAsync(IEnumerable<Tile> tiles);
+        Task SaveAsync(IEnumerable<Tile> tiles);
     }
 }

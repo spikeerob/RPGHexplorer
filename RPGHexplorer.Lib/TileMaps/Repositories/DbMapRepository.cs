@@ -15,24 +15,5 @@ namespace RPGHexplorer.Lib.TileMaps.Repositories
 
         protected override string TableName => LiteDbTables.Maps;
 
-        public Task<List<Map>> GetMapsAsync()
-        {
-            return GetAllAsync();
-        }
-
-        public Task<Map> GetMapAsync(string mapId)
-        {
-            return GetAsync(mapId);
-        }
-
-        public Task SaveMapAsync(Map map)
-        {
-            return SaveAsync(map);
-        }
-
-        public Task DeleteMapAsync(string mapId)
-        {
-            return DeleteAsync(mapId);
-        }
     }
 }
