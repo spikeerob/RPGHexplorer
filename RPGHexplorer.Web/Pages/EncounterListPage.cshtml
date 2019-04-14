@@ -1,0 +1,48 @@
+@page "/encounters"
+@using RPGHexplorer.Common.Encounters
+
+<div class="container">
+    <h2>Maps</h2>
+    
+    <a class="btn btn-primary" href="/encounters/create-new">Create New</a>
+    
+    <table class="table my-2">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var encounter in _encounters)
+        {
+            <tr>
+                <td>@encounter.Id</td>
+                <td>@encounter.Name</td>
+                <td>
+                    <a class="btn btn-outline-success my-2 my-sm-0" href="/encounters/@encounter.Id">Edit</a>
+                    <button class="btn btn-outline-danger my-2 my-sm-0" onclick="@(e => Delete(encounter))">Delete</button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+@functions{
+
+    [Inject]
+    private IEncounterService EncounterService { get; set; }
+
+    private List<Encounter> _encounters = new List<Encounter>();
+    
+    protected override async Task OnInitAsync()
+    {
+        _encounters = await EncounterService.ListEncountersAsync();
+    }
+    
+    private async Task Delete(Encounter encounter)
+    {
+        await EncounterService.DeleteEncounterAsync(encounter.Id);
+
+        _encounters.Remove(encounter);
+    }
+}

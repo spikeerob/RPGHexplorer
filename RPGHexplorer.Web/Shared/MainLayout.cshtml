@@ -1,3 +1,4 @@
+@using RPGHexplorer.Web.Pages
 @inherits BlazorLayoutComponent
 @inject ToolState ToolState
 
@@ -15,7 +16,10 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <NavLink class="nav-link" href="Maps">Maps</NavLink>
+                    <NavLink class="nav-link" href="/maps">Maps</NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="/encounters">Encounters</NavLink>
                 </li>
             </ul>
         </div>
