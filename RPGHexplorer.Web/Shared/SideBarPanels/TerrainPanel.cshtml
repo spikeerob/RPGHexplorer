@@ -1,10 +1,11 @@
+@using RPGHexplorer.Common.Terrain
 @inject ToolState ToolState
 
 @foreach (var terrainType in TerrainType.All)
 {
     <button
         class="sidebar-grid-button btn @(ToolState.CurrentTerrainTypeId == terrainType.Id ? "active" : "")"
-        style="background-color: @terrainType.ColorHex"
+        style="background-color: @terrainType.BackgroundColorHex"
         onclick="@(() => ToolState.SelectTerrain(terrainType.Id))">
         @terrainType.Name
     </button>

@@ -1,4 +1,4 @@
-namespace RPGHexplorer.Common.TileMaps
+namespace RPGHexplorer.Common.Terrain
 {
     public class TerrainType
     {
@@ -8,25 +8,33 @@ namespace RPGHexplorer.Common.TileMaps
             {
                 Id = "grass",
                 Name = "Grass",
-                ColorHex = "#50f442"
+                BackgroundColorHex = "#50f442"
             },
             new TerrainType
             {
                 Id = "forest",
                 Name = "Forest",
-                ColorHex = "#257025"
+                BackgroundColorHex = "#257025",
+                ForegroundColorHex = "#459045",
+            },
+            new TerrainType
+            {
+                Id = "mountain",
+                Name = "Mountain",
+                BackgroundColorHex = "#555555",
+                ForegroundColorHex = "#999999",
             },
             new TerrainType
             {
                 Id = "sand",
                 Name = "Sand",
-                ColorHex = "#cfdb6f"
+                BackgroundColorHex = "#cfdb6f"
             },
             new TerrainType
             {
                 Id = "water",
                 Name = "Water",
-                ColorHex = "#4e5eb7"
+                BackgroundColorHex = "#4e5eb7"
             },
         };
         
@@ -34,6 +42,8 @@ namespace RPGHexplorer.Common.TileMaps
         
         public string Name { get; set; }
 
-        public string ColorHex { get; set; }
+        public string BackgroundColorHex { get; set; }
+        
+        public string ForegroundColorHex { get; set; }
     }
 }

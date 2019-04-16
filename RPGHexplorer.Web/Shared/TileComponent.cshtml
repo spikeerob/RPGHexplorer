@@ -1,13 +1,16 @@
+@using RPGHexplorer.Common.Terrain
 @inject TileClickService TileClickService
 @inject ToolState ToolState
 
-<polygon points="@GetPointString()" 
-         onclick="@OnClick"
-         onmousemove="@OnMouseOver"
-         onmousedown="@OnMouseDown"
-         title="@Tile.TileKey"
-         stroke="black" 
-         fill="@GetColorHex()" />
+<polygon 
+    points="@GetPointString()" 
+    onclick="@OnClick"
+    onmousemove="@OnMouseOver"
+    onmousedown="@OnMouseDown"
+    title="@Tile.TileKey"
+    stroke="black" 
+    fill="@TerrainType.BackgroundColorHex"
+/>
 
 @functions {
 
@@ -17,16 +20,14 @@
     [Parameter]
     private Tile Tile { get; set; }
 
+    [Parameter]
+    private TerrainType TerrainType { get; set; }
+
     private string GetPointString()
     {
         var corners = Layout.GetHexCorners(Tile.Hex);
 
         return string.Join(" ", corners.Select(c => $"{c.X},{c.Y}"));
-    }
-
-    private string GetColorHex()
-    {
-        return TerrainType.All.FirstOrDefault(t => t.Id == Tile.TerrainTypeId)?.ColorHex ?? "grey";
     }
 
     private async Task OnClick()
