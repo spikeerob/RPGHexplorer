@@ -1,27 +1,33 @@
 @page "/encounters/{EncounterId}"
 @page "/encounters/create-new"
+@using Microsoft.AspNetCore.Blazor.Services
 @using RPGHexplorer.Common.Encounters
 
 <div class="container">
 
-    <EditForm Model="@Encounter" OnValidSubmit="@Save">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" bind="@Encounter.Name" />
+    </div>
+    <div class="form-group">
+        <label>Details</label>
+        <textarea class="form-control" bind="@Encounter.Details" rows="3"></textarea>
+    </div>
 
-        <InputText id="name" bind-Value="@Encounter.Name" />
-        
-        <InputTextArea id="details" bind-Value="@Encounter.Details" />
+    <button class="btn btn-outline-primary" onclick="@Save">Submit</button>
 
-        <button type="submit">Submit</button>
-    </EditForm>
 </div>
 
 @functions{
+    
     [Parameter]
     public string EncounterId { get; set; }
 
     [Inject]
     public IEncounterService EncounterService { get; set; }
+    
+    [Inject]
+    IUriHelper UriHelper { get; set; }
     
     public Encounter Encounter { get; set; } = new Encounter();
     
@@ -36,6 +42,8 @@
     private async Task Save()
     {
         await EncounterService.SaveEncounterAsync(Encounter);
+        
+        UriHelper.NavigateTo("/encounters");
     }
 
 }

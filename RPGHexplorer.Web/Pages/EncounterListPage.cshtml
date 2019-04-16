@@ -1,23 +1,24 @@
 @page "/encounters"
 @using RPGHexplorer.Common.Encounters
+@using RPGHexplorer.Web.Extensions
 
 <div class="container">
     <h2>Maps</h2>
     
-    <a class="btn btn-primary" href="/encounters/create-new">Create New</a>
+    <a class="btn btn-outline-primary" href="/encounters/create-new">Create New</a>
     
     <table class="table my-2">
         <tr>
-            <th>Id</th>
             <th>Name</th>
+            <th>Details</th>
             <th>Actions</th>
         </tr>
         @foreach (var encounter in _encounters)
         {
             <tr>
-                <td>@encounter.Id</td>
-                <td>@encounter.Name</td>
-                <td>
+                <td title="@encounter.Id">@encounter.Name</td>
+                <td style="width: 60%">@encounter.Details.Truncate(200)</td>
+                <td style="width: 20%">
                     <a class="btn btn-outline-success my-2 my-sm-0" href="/encounters/@encounter.Id">Edit</a>
                     <button class="btn btn-outline-danger my-2 my-sm-0" onclick="@(e => Delete(encounter))">Delete</button>
                 </td>
