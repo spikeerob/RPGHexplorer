@@ -15,7 +15,7 @@ namespace RPGHexplorer.Web.Services
             {
                 throw new ArgumentException($"{contentType.FullName} must be a Blazor Component");
             }
-			
+
             var content = new RenderFragment(x =>
             {
                 x.OpenComponent(1, contentType); 

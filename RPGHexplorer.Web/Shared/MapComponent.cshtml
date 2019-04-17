@@ -1,7 +1,6 @@
 @using RPGHexplorer.Common.Terrain
-@inject MapState MapState
 
-@if (MapState.Map != null)
+@if (MapState.IsLoaded)
 {
     <svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
         @foreach (var tile in MapState.Tiles.Values)
@@ -21,21 +20,20 @@ else
 
 @functions
 {
-    private List<TerrainType> TerrainTypes { get; set; } = new List<TerrainType>();
-
+    [Inject]
+    private MapState MapState { get; set; }
+    
     private Layout Layout = new Layout(Orientation.Flat, new Point(20, 20),new Point(250, 250));
-
     
     protected override void OnInit()
     {
-        TerrainTypes = TerrainType.All.ToList();
-        
         MapState.OnTilesChange += StateHasChanged;
+        MapState.OnMapChange += StateHasChanged;
     }
 
     private TerrainType GetTerrainType(Tile tile)
     {
-        return TerrainTypes.FirstOrDefault(t => t.Id == tile.TerrainTypeId) ?? new TerrainType
+        return MapState.TerrainTypes.FirstOrDefault(t => t.Id == tile.TerrainTypeId) ?? new TerrainType
         {
             Id = "nothing",
             Name = "Nothing",

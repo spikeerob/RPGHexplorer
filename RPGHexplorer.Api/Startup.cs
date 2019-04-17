@@ -8,10 +8,13 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RPGHexplorer.Common.Encounters;
+using RPGHexplorer.Common.Terrain;
 using RPGHexplorer.Common.TileMaps;
 using RPGHexplorer.Lib.DataBases;
 using RPGHexplorer.Lib.Encounters;
 using RPGHexplorer.Lib.Encounters.Repositories;
+using RPGHexplorer.Lib.Terrain;
+using RPGHexplorer.Lib.Terrain.Repositories;
 using RPGHexplorer.Lib.TileMaps.Repositories;
 using RPGHexplorer.Lib.TileMaps.Services;
 
@@ -46,9 +49,11 @@ namespace RPGHexplorer.Api
             services.AddSingleton<IMapRepository, DbMapRepository>();
             services.AddSingleton<ITileRepository, DbTileRepository>();
             services.AddSingleton<IEncounterRepository, DbEncounterRepository>();
+            services.AddSingleton<ITerrainTypeRepository, TerrainTypeRepository>();
 
             services.AddSingleton<ITileMapService, TileMapService>();
             services.AddSingleton<IEncounterService, EncounterService>();
+            services.AddSingleton<ITerrainService, TerrainService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

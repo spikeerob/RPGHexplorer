@@ -1,7 +1,8 @@
 @using RPGHexplorer.Common.Terrain
 @inject ToolState ToolState
+@inject MapState MapState
 
-@foreach (var terrainType in TerrainType.All)
+@foreach (var terrainType in MapState.TerrainTypes)
 {
     <button
         class="sidebar-grid-button btn @(ToolState.CurrentTerrainTypeId == terrainType.Id ? "active" : "")"

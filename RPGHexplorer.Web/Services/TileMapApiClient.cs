@@ -38,7 +38,7 @@ namespace RPGHexplorer.Web.Services
         
         public Task SaveTileAsync(Tile tile)
         {
-            return _client.PostJsonAsync<Tile>($"/api/tiles", tile);
+            return _client.PostJsonAsync($"/api/tiles", tile);
         }
 
         public Task DeleteMapAsync(string mapId)

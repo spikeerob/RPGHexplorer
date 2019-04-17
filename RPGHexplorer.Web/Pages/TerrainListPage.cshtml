@@ -1,0 +1,47 @@
+@page "/terrain"
+@using RPGHexplorer.Common.Terrain
+
+<div class="container">
+    <h2>Terrain</h2>
+    
+    <a class="btn btn-outline-primary" href="/terrain/create-new">Create New</a>
+    
+    <table class="table my-2">
+        <tr>
+            <th>Name</th>
+            <th>Colour</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var terrainType in _terrainTypes)
+        {
+            <tr>
+                <td title="@terrainType.Id">@terrainType.Name</td>
+                <td style="width: 10%" style="background-color: @terrainType.BackgroundColorHex"></td>
+                <td style="width: 20%">
+                    <a class="btn btn-outline-success my-2 my-sm-0" href="/terrain/@terrainType.Id">Edit</a>
+                    <button class="btn btn-outline-danger my-2 my-sm-0" onclick="@(e => Delete(terrainType))">Delete</button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+@functions{
+
+    [Inject]
+    private ITerrainService TerrainService { get; set; }
+
+    private List<TerrainType> _terrainTypes = new List<TerrainType>();
+
+    protected override async Task OnInitAsync()
+    {
+        _terrainTypes = await TerrainService.ListTerrainTypesAsync();
+    }
+
+    private async Task Delete(TerrainType terrainType)
+    {
+        await TerrainService.DeleteTerrainTypeAsync(terrainType.Id);
+
+        _terrainTypes.Remove(terrainType);
+    }
+}
