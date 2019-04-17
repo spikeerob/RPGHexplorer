@@ -1,6 +1,8 @@
-namespace RPGHexplorer.Common.Encounters
+using RPGHexplorer.Common.Encounters;
+
+namespace RPGHexplorer.Common.RollTables
 {
-    public class RollTableItem
+    public class EncounterRollTableItem
     {
         public string EncounterId { get; set; }
 

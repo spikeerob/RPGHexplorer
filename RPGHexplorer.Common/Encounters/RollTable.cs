@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using RPGHexplorer.Common.RollTables;
 
 namespace RPGHexplorer.Common.Encounters
 {
     public class RollTable
     {
-        public List<RollTableItem> Items { get; set; }
+        public List<EncounterRollTableItem> PossibleEncounters { get; set; }
     }
 }
