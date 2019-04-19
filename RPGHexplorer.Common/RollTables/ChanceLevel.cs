@@ -2,12 +2,12 @@ namespace RPGHexplorer.Common.RollTables
 {
     public enum ChanceLevel
     {
-        Never = 0,
-        Improbable = 5,
-        Rarely = 25,
-        Occasionally = 50,
-        Likely = 75,
-        Expected = 95,
-        Certain = 100,
+        NearlyNever1 = 1,
+        Improbable5 = 5,
+        Rarely25 = 25,
+        Occasionally50 = 50,
+        Likely75 = 75,
+        Expected95 = 95,
+        AlmostCertain99 = 99,
     }
 }

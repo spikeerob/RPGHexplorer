@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGHexplorer.Api", "RPGHexp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGHexplorer.Common", "RPGHexplorer.Common\RPGHexplorer.Common.csproj", "{4F380B4D-5300-47F1-B69C-939A1B20B9CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGHexplorer.Test", "RPGHexplorer.Test\RPGHexplorer.Test.csproj", "{A3503864-768C-4C7B-933A-D12A86595A56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{4F380B4D-5300-47F1-B69C-939A1B20B9CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F380B4D-5300-47F1-B69C-939A1B20B9CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F380B4D-5300-47F1-B69C-939A1B20B9CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3503864-768C-4C7B-933A-D12A86595A56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3503864-768C-4C7B-933A-D12A86595A56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3503864-768C-4C7B-933A-D12A86595A56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3503864-768C-4C7B-933A-D12A86595A56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
